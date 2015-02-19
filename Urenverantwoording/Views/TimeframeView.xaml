@@ -1,0 +1,61 @@
+﻿<UserControl x:Class="Urenverantwoording.Views.TimeframeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="172" d:DesignWidth="340">
+
+    <TabControl
+             Padding="0 0 0 20">
+        <TabItem Header="Details">
+            <StackPanel>
+                <DockPanel>
+                    <Label DockPanel.Dock="Left" Width="59">Activiteit:</Label>
+                    <TextBox DockPanel.Dock="Left" x:Name="Activity"></TextBox>
+                </DockPanel>
+
+                <WrapPanel>
+                    <Label Width="59">Datum:</Label>
+                    <DatePicker 
+                            SelectedDate="{Binding Date, Mode=TwoWay}"
+                            Width="108"/>
+                </WrapPanel>
+
+                <WrapPanel>
+                    <Label Width="59">Van:</Label>
+                    <xctk:TimePicker 
+                            Value="{Binding Start, Mode=TwoWay}"
+                            Width="108"/>
+
+                    <Button Width="44" Margin="10 0 0 0" x:Name="StartNow">Nu</Button>
+                </WrapPanel>
+
+                <WrapPanel>
+                    <Label Width="59">Tot:</Label>
+                    <xctk:TimePicker 
+                            Value="{Binding End, Mode=TwoWay}"
+                            Width="108"/>
+
+                    <Button Width="44" Margin="10 0 0 0" x:Name="EndNow">Nu</Button>
+                </WrapPanel>
+            </StackPanel>
+        </TabItem>
+
+
+
+
+        <TabItem Header="Omschrijving">
+            <StackPanel Orientation="Vertical">
+                <Label>Omschrijving:</Label>
+                <xctk:RichTextBox 
+                        Height="100"
+                        VerticalScrollBarVisibility="Auto"
+                        Text="{Binding Description, Mode=TwoWay}"
+                        Background="White"></xctk:RichTextBox>
+            </StackPanel>
+        </TabItem>
+    </TabControl>
+</UserControl>

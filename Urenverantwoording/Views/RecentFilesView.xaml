@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="Urenverantwoording.Views.RecentFilesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" d:DesignWidth="303.655" d:DesignHeight="227.799">
+    <Grid>
+        
+        <DataGrid 
+            ItemsSource="{Binding Files}"
+            SelectedItem="{Binding SelectedFile, Mode=TwoWay}"
+            AutoGenerateColumns="False"
+            IsReadOnly="True">
+            
+            
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="Bestandsnaam" Width="*" Binding="{Binding Name}"></DataGridTextColumn>
+
+                
+                <!-- Actions column -->
+                <DataGridTemplateColumn Header="Acties" Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="X" 
+                                    ToolTip="Verwijderen uit lijst" 
+                                    cal:Message.Attach="[Click] = [RemoveFromList($datacontext)]"></Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+
+
+            <!-- Double click calls Open command -->
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Setter Property="cal:Message.Attach" Value="[Event MouseDoubleClick] = [Action OpenFile($dataContext)]"/>
+                </Style>
+            </DataGrid.ItemContainerStyle>
+        </DataGrid>
+    </Grid>
+</UserControl>

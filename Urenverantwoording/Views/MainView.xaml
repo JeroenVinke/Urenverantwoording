@@ -1,0 +1,88 @@
+﻿<urenverantwoording:BaseWindow x:Class="Urenverantwoording.Views.MainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:urenverantwoording="clr-namespace:Urenverantwoording"
+        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:views="clr-namespace:Urenverantwoording.Views"
+        WindowState="Maximized"
+        cal:Message.Attach="[Event Closing] = [Action Close($eventArgs)]">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Menu IsMainMenu="True" Grid.ColumnSpan="2">
+            <MenuItem Header="_Bestand">
+                <MenuItem Header="Sluiten" x:Name="TryClose"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Projecten">
+                <MenuItem Header="Nieuw" x:Name="CreateProject" cal:Bind.Model="{Binding ProjectListViewModel}"></MenuItem>
+                <MenuItem Header="Verwijderen" x:Name="RemoveProject" cal:Bind.Model="{Binding ProjectListViewModel}"></MenuItem>
+            </MenuItem>
+
+
+            <MenuItem x:Name="Save" Width="24">
+                <MenuItem.Icon>
+                    <Image>
+                        <Image.Style>
+                            <Style TargetType="{x:Type Image}">
+                                
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="True">
+                                        <Setter Property="Source" Value="pack://application:,,,/Urenverantwoording;component/Resources/Save.png"/>
+                                    </Trigger>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="Source" Value="pack://application:,,,/Urenverantwoording;component/Resources/Save_disabled.png"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+                    </Image>
+                </MenuItem.Icon>
+            </MenuItem>
+            
+        </Menu>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150px"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ContentControl x:Name="ProjectListViewModel" Grid.Column="0"></ContentControl>
+
+            <GridSplitter Grid.Column="0" VerticalAlignment="Stretch"  Width="4" Background="Gray"/>
+
+
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <GroupBox Header="Project" DockPanel.Dock="Top">
+                        <ContentControl cal:View.Model="{Binding ProjectListViewModel.SelectedProject}"></ContentControl>
+                    </GroupBox>
+
+                    <GroupBox Header="Uren" DockPanel.Dock="Top">
+                        <StackPanel>
+
+
+                            <StackPanel Orientation="Horizontal">
+                                <Button Height="29" Width="59" x:Name="Create" HorizontalAlignment="Left" cal:Bind.Model="{Binding TimeframeListViewModel}">Nieuw</Button>
+                                <Button Height="29" x:Name="Remove" cal:Bind.Model="{Binding TimeframeListViewModel}">Verwijderen</Button>
+                            </StackPanel>
+
+                            <Border x:Name="TimeframeViewModelIsVisible" >
+                                <ContentControl x:Name="TimeframeViewModel"
+                                                 VerticalAlignment="Top"></ContentControl>
+                            </Border>
+                            
+                            
+                            <ContentControl x:Name="TimeframeListViewModel"></ContentControl>
+                            
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</urenverantwoording:BaseWindow>

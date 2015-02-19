@@ -1,0 +1,34 @@
+﻿<urenverantwoording:BaseWindow x:Class="Urenverantwoording.Views.LauncherView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:urenverantwoording="clr-namespace:Urenverantwoording"
+         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        Title="Urenverantwoording" 
+        Height="307.554" 
+        Width="361.511" 
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <WrapPanel>
+            <Button Content="Nieuw bestand" Height="38" Width="105" x:Name="CreateFile"></Button>
+            <Button Content="Importeer bestand" Height="38" Width="105" x:Name="ImportFile"></Button>
+        </WrapPanel>
+
+
+        <Label Grid.Row="1">Recente bestanden:</Label>
+
+        <ContentControl Grid.Row="2" x:Name="RecentFilesViewModel"></ContentControl>
+        
+        <WrapPanel Grid.Row="3">
+            <Button Content="Open" Height="38" Width="105" x:Name="Open"></Button>
+            <Button Content="Sluiten" Height="38" Width="105" x:Name="Close"></Button>
+        </WrapPanel>
+    </Grid>
+</urenverantwoording:BaseWindow>
