@@ -101,6 +101,11 @@ namespace Urenverantwoording.ViewModels
             _project.NotifyOfPropertyChange(() => _project.TotalTime);
         }
 
+        public bool CanCreate
+        {
+            get { return _project != null && !_project.Finished; }
+        }
+
         public void Remove()
         {
             _project.Project.Timeframes.Remove(SelectedTimeframe.Timeframe);
@@ -111,6 +116,11 @@ namespace Urenverantwoording.ViewModels
             SelectedTimeframe = Timeframes.LastOrDefault();
         }
 
+
+        public bool CanRemove
+        {
+            get { return _project != null && !_project.Finished; }
+        }
 
         public void Handle(CurrentProjectChangedEvent message)
         {
@@ -127,6 +137,16 @@ namespace Urenverantwoording.ViewModels
 
                     Timeframes.Add(vm);
                 }
+
+
+                _project.PropertyChanged += (sender, args) =>
+                {
+                    if (args.PropertyName == "Finished")
+                    {
+                        NotifyOfPropertyChange(() => CanRemove);
+                        NotifyOfPropertyChange(() => CanCreate);
+                    }
+                };
             }
         }
     }

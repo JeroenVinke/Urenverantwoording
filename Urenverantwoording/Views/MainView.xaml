@@ -73,11 +73,14 @@
 
                             <Border x:Name="TimeframeViewModelIsVisible" >
                                 <ContentControl x:Name="TimeframeViewModel"
-                                                 VerticalAlignment="Top"></ContentControl>
+                                                IsEnabled="{Binding ProjectListViewModel.SelectedProject.Finished, Converter={StaticResource InverseBoolConverter}}"
+                                                VerticalAlignment="Top"></ContentControl>
                             </Border>
-                            
-                            
-                            <ContentControl x:Name="TimeframeListViewModel"></ContentControl>
+
+
+                            <ContentControl x:Name="TimeframeListViewModel"
+                                            IsEnabled="{Binding ProjectListViewModel.SelectedProject.Finished, Converter={StaticResource InverseBoolConverter}}">          
+                            </ContentControl>
                             
                         </StackPanel>
                     </GroupBox>

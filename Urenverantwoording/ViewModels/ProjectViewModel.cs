@@ -30,6 +30,82 @@ namespace Urenverantwoording.ViewModels
         }
 
 
+        public double ExpectedHours
+        {
+            get { return Project.ExpectedHours; }
+            set
+            {
+                if (value == Project.ExpectedHours) return;
+                Project.ExpectedHours = value;
+
+                NotifyOfPropertyChange(() => ExpectedHours);
+            }
+        }
+
+
+        public double ExpectedCost
+        {
+            get { return Project.ExpectedCost; }
+            set
+            {
+                if (value == Project.ExpectedCost) return;
+                Project.ExpectedCost = value;
+
+                NotifyOfPropertyChange(() => ExpectedCost);
+            }
+        }
+
+
+        public double HourlyWage
+        {
+            get { return Project.HourlyWage; }
+            set
+            {
+                if (value == Project.HourlyWage) return;
+                Project.HourlyWage = value;
+
+                NotifyOfPropertyChange(() => HourlyWage);
+            }
+        }
+
+        public double DefinitiveCost
+        {
+            get { return Project.DefinitiveCost; }
+            set
+            {
+                if (value == Project.DefinitiveCost) return;
+                Project.DefinitiveCost = value;
+
+                NotifyOfPropertyChange(() => DefinitiveCost);
+            }
+        }
+
+        public bool Finished
+        {
+            get { return Project.Finished; }
+            set
+            {
+                if (value == Project.Finished) return;
+                Project.Finished = value;
+
+                NotifyOfPropertyChange(() => Finished);
+            }
+        }
+
+
+        public bool Collected
+        {
+            get { return Project.Collected; }
+            set
+            {
+                if (value == Project.Collected) return;
+                Project.Collected = value;
+
+                NotifyOfPropertyChange(() => Collected);
+            }
+        }
+
+
         public TimeSpan TotalTime
         {
             get
