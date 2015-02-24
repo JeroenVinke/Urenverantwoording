@@ -148,6 +148,9 @@ namespace Urenverantwoording.ViewModels
                     }
                 };
             }
+
+            NotifyOfPropertyChange(() => CanRemove);
+            NotifyOfPropertyChange(() => CanCreate);
         }
     }
 }
